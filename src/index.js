@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 
 const mockedNews = [{
   artTitle: 'El último reto de la NASA: hay una región sobre el Ártico que frena las naves e interfiere con las señales y no sabemos por qué',
