@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {HeadersContainer} from './components/HeadersContainer';
+import {news} from './components/News'
 
-function HelloWorld(){
-  return <h1>Hello World</h1>;
-}
 
-const html = <HelloWorld />
+const html = <HeadersContainer news = {this.props.news}/>;
+{console.log(html)}
 ReactDOM.render(
   html,
   document.getElementById('root')

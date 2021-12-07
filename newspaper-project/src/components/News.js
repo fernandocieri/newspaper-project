@@ -1,0 +1,2 @@
+export const news = [{id: 1, title: 'Los salmonetes del desierto', content: 'Un grupo de salmonetes están adueñandose de las tierras del lejano oeste'},
+{id: 2, title: 'La navidad está al venir', content: 'El precio de las gambas y los turrones se dispara..'}]
