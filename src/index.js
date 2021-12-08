@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './explorer-newspaper.css'
+import './newspaper-explorer.css'
 
 const mockedNews = [{
   artTitle: 'El último reto de la NASA: hay una región sobre el Ártico que frena las naves e interfiere con las señales y no sabemos por qué',
@@ -191,7 +191,7 @@ class Main extends React.Component {
 
     let articleInfo = this.state.news.filter(article => { return article.idNumber == this.state.showedArtID })
     //check later to improve scalability getting rid of the array created by filter method somehow;
-    let articlePage = <FullNewsArticle handlePageChanges={this.handlePageChanges} newsData={articleInfo[0]} />
+    const articlePage = <FullNewsArticle handlePageChanges={this.handlePageChanges} newsData={articleInfo[0]} />
 
     let myRender = undefined
     {

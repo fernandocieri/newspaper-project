@@ -1,0 +1,66 @@
+body {
+    font-size: 25px;
+}
+
+@mixin left-padding() {
+    padding-left: 10px;
+}
+
+.article-preview {
+    width: 70%;
+    height: 100%;
+    margin: 0px;
+    padding: 10px;
+    border: solid 1px #a0a0a0;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: [comp-content] 70% [img] 30%;
+    grid-template-rows: [title] 1.5fr [theme] 0.3fr [paragraph] 2fr [extra] 0.5fr;
+    column-gap: 8px;
+
+    img {
+        width: 95%;
+        grid-column: img;
+        grid-row: title / extra;
+    }
+
+    button {
+        width: 80px;
+        height: 40px;
+        grid-column: comp-content;
+        grid-row: paragraph;
+    }
+
+    .artTitle {
+    @include left-padding;
+    padding-top: 10px;
+    font-size: 120%;
+    font-weight: bolder;
+    grid-column: comp-content;
+    grid-row: title;
+    }
+
+    .artTheme {
+        @include left-padding;
+        grid-column: comp-content;
+        grid-row: theme;
+    }
+
+    p {
+        @include left-padding;
+        grid-row: paragraph;
+        grid-column: comp-content;
+    }
+
+    .artextrainfo {
+        @include left-padding;
+        grid-column: comp-content;
+        grid-row: extra;
+    }
+}
+
+
+
+img {
+    width: 40%;
+}
