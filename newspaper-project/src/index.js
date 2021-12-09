@@ -5,8 +5,9 @@ import {HeadersContainer} from './components/HeadersContainer';
 import {news} from './components/News'
 
 
-const html = <HeadersContainer news = {this.props.news}/>;
-{console.log(html)}
+console.log(news);
+const html = <HeadersContainer news = {news}/>;
+console.log(html)
 ReactDOM.render(
   html,
   document.getElementById('root')
