@@ -1,0 +1,56 @@
+body {
+  font-size: 25px;
+}
+
+.article-preview {
+  width: 70%;
+  height: 100%;
+  margin: 0px;
+  padding: 10px;
+  border: solid 1px #a0a0a0;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: [comp-content] 70% [img] 30%;
+  grid-template-rows: [title] 1.5fr [theme] 0.3fr [paragraph] 2fr [extra] 0.5fr;
+  column-gap: 8px;
+}
+.article-preview img {
+  width: 95%;
+  grid-column: img;
+  grid-row: title/extra;
+}
+.article-preview button {
+  width: 80px;
+  height: 40px;
+  grid-column: comp-content;
+  grid-row: paragraph;
+}
+.article-preview .artTitle {
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 120%;
+  font-weight: bolder;
+  grid-column: comp-content;
+  grid-row: title;
+}
+.article-preview .artTheme {
+  padding-left: 10px;
+  grid-column: comp-content;
+  grid-row: theme;
+}
+.article-preview p {
+  padding-left: 10px;
+  grid-row: paragraph;
+  grid-column: comp-content;
+}
+.article-preview .artextrainfo {
+  padding-left: 10px;
+  grid-column: comp-content;
+  grid-row: extra;
+}
+
+img {
+  width: 40%;
+}
+
+/*# sourceMappingURL=newspaper-explorer.css.map */
