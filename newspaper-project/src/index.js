@@ -201,7 +201,7 @@ class Main extends React.Component {
       showedArtID: undefined,
       articleTheme: undefined,
     };
-    this.handlePageChanges = this.handlePageChanges.bind(this);   
+    this.handlePageChanges = this.handlePageChanges.bind(this);
     this.handleSetTheme = this.handleSetTheme.bind(this)
   }
 
@@ -210,14 +210,14 @@ class Main extends React.Component {
       openFullArticle: !state.openFullArticle,
       showedArtID: id,
     }));
-  }  
-  handleSetTheme(theme){
+  }
+  handleSetTheme(theme) {
     console.log(`El tema ${theme}`);
-    this.setState((state) => ({articleTheme: theme}))
+    this.setState((state) => ({ articleTheme: theme }))
   }
 
   render() {
-   
+
     const explorePage = (
       <section className="explore">
         {this.state.news.map((article) => (
@@ -230,7 +230,7 @@ class Main extends React.Component {
       </section>
     );
 
-    
+
     let articleInfo = this.state.news.filter((article) => {
       return article.idNumber === this.state.showedArtID;
     });
@@ -242,21 +242,34 @@ class Main extends React.Component {
       />
     );
 
-    let myRender = undefined;
-    {
-      if (this.state.articleTheme === undefined) {
-        myRender = this.state.openFullArticle ? articlePage : explorePage;
-      } else {
-        myRender = if(this.state.news.artTheme == this.state.articleTheme){
-          <Header handleFilterThemes={this.handleFilterThemes} newsData={filteredThemes[0]}/>
-        } 
-      }
-    }    
+    let filteredNewsExplore = this.state.news.filter((article) => {
+      return article.artTheme === this.state.articleTheme;
+    });
+
+    const filteredExplorePage =   <section className="filtered-explore">
+    {filteredNewsExplore.map((article) => (
+      <NewsArticlePreview
+        newsData={article}
+        handlePageChanges={this.handlePageChanges}
+        key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
+      />
+    ))}
+  </section>
+
+    let finalRender = undefined;
+    if ((this.state.articleTheme === undefined) || (this.state.articleTheme=== 'inicio')) {
+      finalRender = this.state.openFullArticle ? articlePage : explorePage;
+    } else {
+      finalRender = this.state.openFullArticle ? articlePage : filteredExplorePage;
+    }
+
+    //articleRender = this.state.openFullArticle ? articlePage : explorePage;
+
     return (
       //when {openFullArticle == true} explorePage will hide and articlePage will display, getting the info needed to render by filtering mockedNews using showedArtID.
       <>
-        <Header handleSetTheme = {this.handleSetTheme}/>
-        {myRender}
+        <Header handleSetTheme={this.handleSetTheme} />
+        {finalRender}
       </>
     );
   }
@@ -265,30 +278,30 @@ class Main extends React.Component {
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { news: [...mockedNews]};
+    this.state = { news: [...mockedNews] };
     this.handleFilterThemes = this.handleFilterThemes.bind(this)
   }
-  handleFilterThemes(artTheme) {    
+  handleFilterThemes(artTheme) {
     this.props.handleSetTheme(artTheme);
-  }  
-  
+  }
+
   render() {
     let rawThemes = this.state.news.map((article) => (
-      article.artTheme  
+      article.artTheme
     ));
-    let filteredThemes = [];
+    let filteredThemes = ['inicio'];
     for (let element of rawThemes) {
       if (!filteredThemes.includes(element)) {
         filteredThemes.push(element);
-      }           
-    }  
+      }
+    }
 
     return (
       <header>
         <h1>Chataca</h1>
         <nav>
-        {filteredThemes.map(theme => <Navbar handleFilterThemes={this.handleFilterThemes} newsData={theme}/>)}
-        </nav>        
+          {filteredThemes.map(theme => <Navbar handleFilterThemes={this.handleFilterThemes} newsData={theme} />)}
+        </nav>
       </header>
     )
   }
@@ -296,19 +309,19 @@ class Header extends React.Component {
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {theme: this.props.newsData };
+    this.state = { theme: this.props.newsData };
     this.sendTheme = this.sendTheme.bind(this);
-    
+
   }
   sendTheme() {
     this.props.handleFilterThemes(this.state.theme);
   }
-  
-  render() {     
+
+  render() {
     console.log(`Este ${this.state.theme}`);
     return (
-      <>        
-          <button onClick={this.sendTheme}>{this.state.theme}</button>        
+      <>
+        <button onClick={this.sendTheme}>{this.state.theme}</button>
       </>
     );
   }
