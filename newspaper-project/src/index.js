@@ -160,7 +160,7 @@ class NewsArticlePreview extends React.Component {
     this.sendID = this.sendID.bind(this);
   }
 
-  //onClick sendID will update the state of Main, chaging the value of openFullArticle to its opossite, and giving idNumber to showedArtID as a value;
+  //onClick sendID will update the state of Main, chaging the value of articleIsOpen to its opossite, and giving idNumber to showedArtID as a value;
   sendID() {
     this.props.handlePageChanges(this.state.idNumber);
   }
@@ -197,7 +197,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       news: [...mockedNews],
-      openFullArticle: false,
+      articleIsOpen: false,
       showedArtID: undefined,
       articleTheme: undefined,
     };
@@ -207,13 +207,14 @@ class Main extends React.Component {
 
   handlePageChanges(id) {
     this.setState((state) => ({
-      openFullArticle: !state.openFullArticle,
-      showedArtID: id,
+      articleIsOpen: !state.articleIsOpen,
+      showedArtID: id
     }));
   }
+
   handleSetTheme(theme) {
-    console.log(`El tema ${theme}`);
-    this.setState((state) => ({ articleTheme: theme }))
+    this.setState((state) => ({ articleTheme: theme }));
+    if (this.state.articleIsOpen === true) { this.setState((state) => ({ articleIsOpen: false })) };
   }
 
   render() {
@@ -230,50 +231,46 @@ class Main extends React.Component {
       </section>
     );
 
-
-    let articleInfo = this.state.news.filter((article) => {
-      return article.idNumber === this.state.showedArtID;
-    });
-    //check later to improve scalability getting rid of the array created by filter method somehow;
+    const articlesByTheme = this.state.news.filter((article) => { return article.artTheme === this.state.articleTheme });
+    const filteredExplorePage = (
+      <section className="filtered-explore">
+        {articlesByTheme.map((article) => (
+          <NewsArticlePreview
+          newsData={article}
+          handlePageChanges={this.handlePageChanges}
+          key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
+          />
+          ))}
+      </section>
+    );
+    
+    const clickedArticleSearch = this.state.news.filter((article) => { return article.idNumber === this.state.showedArtID });
     const articlePage = (
       <FullNewsArticle
         handlePageChanges={this.handlePageChanges}
-        newsData={articleInfo[0]}
+        newsData={clickedArticleSearch[0]}
       />
     );
 
-    let filteredNewsExplore = this.state.news.filter((article) => {
-      return article.artTheme === this.state.articleTheme;
-    });
-
-    const filteredExplorePage =   <section className="filtered-explore">
-    {filteredNewsExplore.map((article) => (
-      <NewsArticlePreview
-        newsData={article}
-        handlePageChanges={this.handlePageChanges}
-        key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
-      />
-    ))}
-  </section>
-
-    let finalRender = undefined;
-    if ((this.state.articleTheme === undefined) || (this.state.articleTheme=== 'inicio')) {
-      finalRender = this.state.openFullArticle ? articlePage : explorePage;
+    //When the user clicks on a theme or the 'volver' button, the value of articleTheme will change;
+    /*when {articleIsOpen == true} explorePage or filteredExplorePage will hide and articlePage will display, 
+    getting the info needed to render by filtering mockedNews using showedArtID;*/
+    let currentRender = undefined;
+    if ((this.state.articleTheme === undefined) || (this.state.articleTheme === 'inicio')) {
+      currentRender = this.state.articleIsOpen ? articlePage : explorePage;
     } else {
-      finalRender = this.state.openFullArticle ? articlePage : filteredExplorePage;
+      currentRender = this.state.articleIsOpen ? articlePage : filteredExplorePage;
     }
 
-    //articleRender = this.state.openFullArticle ? articlePage : explorePage;
-
     return (
-      //when {openFullArticle == true} explorePage will hide and articlePage will display, getting the info needed to render by filtering mockedNews using showedArtID.
       <>
         <Header handleSetTheme={this.handleSetTheme} />
-        {finalRender}
+        {currentRender}
       </>
     );
   }
 }
+
 //Class Header now contains a Class Navbar to make a Header for the web and include the nav on it.
 class Header extends React.Component {
   constructor(props) {
