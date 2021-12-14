@@ -185,13 +185,8 @@ class NewsArticlePreview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      news: [],
-      openFullArticle: false,
-=======
       news: [...mockedNews],
       articleIsOpen: false,
->>>>>>> 4fe9c95514be501799b0c8101cd06862842068f5
       showedArtID: undefined,
       articleTheme: undefined,
       
@@ -234,37 +229,6 @@ class NewsArticlePreview extends React.Component {
       </section>
     );
 
-<<<<<<< HEAD
-
-    // let articleInfo = this.state.news.filter((article) => {
-    //   return article.idNumber === this.state.showedArtID;
-    // });
-    //check later to improve scalability getting rid of the array created by filter method somehow;
-    // const articlePage = (
-    //   <FullNewsArticle
-    //     handlePageChanges={this.handlePageChanges}
-    //     newsData={articleInfo[0]}
-    //   />
-    // );
-
-    // let filteredNewsExplore = this.state.news.filter((article) => {
-    //   return article.artTheme === this.state.articleTheme;
-    // });
-
-  //   const filteredExplorePage =   <section className="filtered-explore">
-  //   {filteredNewsExplore.map((article) => (
-  //     <NewsArticlePreview
-  //       newsData={article}
-  //       handlePageChanges={this.handlePageChanges}
-  //       key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
-  //     />
-  //   ))}
-  // </section>
-
-    let finalRender = undefined;
-    if ((this.state.articleTheme === undefined) || (this.state.articleTheme=== 'inicio')) {
-      finalRender = explorePage;
-=======
     const articlesByTheme = this.state.news.filter((article) => { return article.artTheme === this.state.articleTheme });
     const filteredExplorePage = (
       <section className="filtered-explore">
@@ -294,18 +258,13 @@ class NewsArticlePreview extends React.Component {
       currentRender = this.state.articleIsOpen ? articlePage : explorePage;
     } else {
       currentRender = this.state.articleIsOpen ? articlePage : filteredExplorePage;
->>>>>>> 4fe9c95514be501799b0c8101cd06862842068f5
     }
 
     return (
       <>
-<<<<<<< HEAD
-        {/* <Header handleSetTheme={this.handleSetTheme} news = {this.state.news}/> */}
-        {finalRender}
-=======
+
         <Header handleSetTheme={this.handleSetTheme} />
         {currentRender}
->>>>>>> 4fe9c95514be501799b0c8101cd06862842068f5
       </>
     );
   }
