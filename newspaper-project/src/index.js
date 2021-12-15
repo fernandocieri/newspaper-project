@@ -194,11 +194,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< Updated upstream
-      news: [...mockedNews],
-=======
       news: [],
->>>>>>> Stashed changes
       articleIsOpen: false,
       showedArtID: undefined,
       articleTheme: undefined,
@@ -251,27 +247,15 @@ class Main extends React.Component {
       <section className="filtered-explore">
         {articlesByTheme.map((article) => (
           <NewsArticlePreview
-<<<<<<< Updated upstream
-          newsData={article}
-          handlePageChanges={this.handlePageChanges}
-          key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
-          />
-          ))}
-      </section>
-    );
-    
-    const clickedArticleSearch = this.state.news.filter((article) => { return article.idNumber === this.state.showedArtID });
-=======
             newsData={article}
             handlePageChanges={this.handlePageChanges}
-            key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
+            key={article.identifier} /*key={mockedNews.indexOf(article)}*/
           />
         ))}
       </section>
     );
 
     const clickedArticleSearch = this.state.news.filter((article) => { return article.identifier === this.state.showedArtID });
->>>>>>> Stashed changes
     const articlePage = (
       <FullNewsArticle
         handlePageChanges={this.handlePageChanges}
