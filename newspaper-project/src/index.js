@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./newspaper-explorer.css";
+import axios from 'axios';
 
 const mockedNews = [
   {
@@ -139,15 +140,13 @@ class FullNewsArticle extends React.Component {
     return (
       <article id="fullArticle">
         <button onClick={this.prevPage}>-- volver</button>
-        <h2>{this.state.artTitle}</h2>
-        <img src={this.state.images[0]} />
+        <h2>{this.state.title}</h2>
+        <img src={this.state.urlToImage} />
         <div className="artextrainfo">
-          {this.state.comments} - {this.state.author} -{" "}
-          {this.state.publishedTime} horas
+         {this.state.author} - {this.state.publishedAt}
         </div>
-        <p>{this.state.artContent}</p>
-        <img src={this.state.images[1]} />
-        <div className="artTheme">Temas: {this.state.artTheme}</div>
+        <p>{this.state.content}</p>
+        <div className="artTheme">soy el tema</div>
       </article>
     );
   }
@@ -162,20 +161,19 @@ class NewsArticlePreview extends React.Component {
 
   //onClick sendID will update the state of Main, chaging the value of articleIsOpen to its opossite, and giving idNumber to showedArtID as a value;
   sendID() {
-    this.props.handlePageChanges(this.state.idNumber);
+    this.props.handlePageChanges(this.state.identifier);
   }
 
   render() {
     return (
       <article onClick={this.sendID} className="article-preview">
-        <div className="artTitle">{this.state.artTitle}</div>
-        <div className="artTheme">{this.state.artTheme}</div>
-        <img src={this.state.images[0]} />
-        <p>{this.state.artDescription}</p>
+        <div className="artTitle">{this.state.title}</div>
+        <div className="artTheme">soy el tema</div>
+        <img src={this.state.urlToImage} />
+        <p>{this.state.description}</p>
         <button>leer más --</button>
         <div className="artextrainfo">
-          {this.state.comments} - {this.state.author} -{" "}
-          {this.state.publishedTime} horas
+        - {this.state.author} - {this.state.publishedAt}
         </div>
       </article>
     );
@@ -196,13 +194,30 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< Updated upstream
       news: [...mockedNews],
+=======
+      news: [],
+>>>>>>> Stashed changes
       articleIsOpen: false,
       showedArtID: undefined,
       articleTheme: undefined,
     };
     this.handlePageChanges = this.handlePageChanges.bind(this);
     this.handleSetTheme = this.handleSetTheme.bind(this)
+  }
+
+  async componentDidMount() {
+    const resp = await axios.get('https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=e1c41041380c4911ad71f2375242b73d');
+    let apiNews = []
+    for (let i = 0; i < resp.data.articles.length; i++) {
+      if (resp.data.articles[i].author === null || resp.data.articles[i].author === '') {
+        resp.data.articles[i].author = 'anonymous author';
+      }
+      apiNews.push({...resp.data.articles[i], identifier:i})
+    }
+    this.setState(()=> ({news: apiNews}))
+    console.log(this.state.news);
   }
 
   handlePageChanges(id) {
@@ -236,6 +251,7 @@ class Main extends React.Component {
       <section className="filtered-explore">
         {articlesByTheme.map((article) => (
           <NewsArticlePreview
+<<<<<<< Updated upstream
           newsData={article}
           handlePageChanges={this.handlePageChanges}
           key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
@@ -245,6 +261,17 @@ class Main extends React.Component {
     );
     
     const clickedArticleSearch = this.state.news.filter((article) => { return article.idNumber === this.state.showedArtID });
+=======
+            newsData={article}
+            handlePageChanges={this.handlePageChanges}
+            key={article.idNumber} /*key={mockedNews.indexOf(article)}*/
+          />
+        ))}
+      </section>
+    );
+
+    const clickedArticleSearch = this.state.news.filter((article) => { return article.identifier === this.state.showedArtID });
+>>>>>>> Stashed changes
     const articlePage = (
       <FullNewsArticle
         handlePageChanges={this.handlePageChanges}
