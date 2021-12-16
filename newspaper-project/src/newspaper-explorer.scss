@@ -1,5 +1,13 @@
-body {
-    font-size: 25px;
+@use 'base';
+@use 'newspaper-header';
+@use 'newspaper-fullnewsarticle';
+ 
+.explore {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: base.$dark-background;
 }
 
 @mixin left-padding() {
@@ -9,9 +17,10 @@ body {
 .article-preview {
     width: 70%;
     height: 100%;
-    margin: 0px;
+    margin: 1.5px 0px 1.5px 0px;
     padding: 10px;
-    border: solid 1px #a0a0a0;
+    border: solid 2px #a0a0a0;
+    background-color: #ffffff;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -27,7 +36,6 @@ body {
 
     button {
         width: 80px;
-        height: 40px;
         grid-column: comp-content;
         grid-row: paragraph;
         align-self: flex-end;
@@ -50,6 +58,7 @@ body {
     }
 
     p {
+        margin: 10px 5px 10px 5px;
         @include left-padding;
         grid-row: paragraph;
         grid-column: comp-content;
@@ -60,10 +69,9 @@ body {
         grid-column: comp-content;
         grid-row: extra;
     }
+
 }
 
-
-
-img {
-    width: 40%;
+.article-preview:hover {
+    border: solid 3.5px base.$green-highlight;
 }

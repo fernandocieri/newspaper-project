@@ -1,13 +1,93 @@
 body {
   font-size: 25px;
+  margin: 0px;
+  padding: 0px;
+  background-color: #1a1818;
+}
+
+img {
+  width: 40%;
+  height: 75%;
+}
+
+Header {
+  background-color: #1a1818;
+  height: 160px;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: [whole] 100%;
+  grid-template-rows: [logo] 1fr [navbar] 1fr;
+  row-gap: 8px;
+}
+Header nav {
+  display: flex;
+  width: 90%;
+  height: 90%;
+  grid-column: whole;
+  grid-row: navbar;
+  justify-self: center;
+  align-self: center;
+  justify-content: center;
+}
+Header nav button {
+  width: 18%;
+  height: 70%;
+  background-color: #1a1818;
+  border: none;
+  margin-left: 8px;
+  justify-self: center;
+  color: #32c51f;
+  font-size: 27px;
+  font-weight: bold;
+}
+Header nav button:hover {
+  border: solid 3px;
+  border-color: #32c51f;
+}
+
+h1 {
+  grid-column: whole;
+  grid-row: logo;
+  justify-self: center;
+  margin: 0px;
+  padding: 0px;
+  color: #32c51f;
+  font-size: 60px;
+}
+
+#fullArticle {
+  background-color: white;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-top: 1%;
+  padding-right: 2%;
+  padding-left: 2%;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+}
+#fullArticle img {
+  width: 70%;
+  align-self: center;
+}
+
+.explore {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1818;
 }
 
 .article-preview {
   width: 70%;
   height: 100%;
-  margin: 0px;
+  margin: 1.5px 0px 1.5px 0px;
   padding: 10px;
-  border: solid 1px #a0a0a0;
+  border: solid 2px #a0a0a0;
+  background-color: #ffffff;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -22,7 +102,6 @@ body {
 }
 .article-preview button {
   width: 80px;
-  height: 40px;
   grid-column: comp-content;
   grid-row: paragraph;
   align-self: flex-end;
@@ -42,6 +121,7 @@ body {
   grid-row: theme;
 }
 .article-preview p {
+  margin: 10px 5px 10px 5px;
   padding-left: 10px;
   grid-row: paragraph;
   grid-column: comp-content;
@@ -52,8 +132,8 @@ body {
   grid-row: extra;
 }
 
-img {
-  width: 40%;
+.article-preview:hover {
+  border: solid 3.5px #32c51f;
 }
 
 /*# sourceMappingURL=newspaper-explorer.css.map */
