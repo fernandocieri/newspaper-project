@@ -58,12 +58,12 @@ h1 {
 }
 
 #fullArticle {
-  background-color: white;
   margin-left: 5%;
   margin-right: 5%;
   padding-top: 1%;
   padding-right: 2%;
   padding-left: 2%;
+  background-color: white;
   text-align: justify;
   display: flex;
   flex-direction: column;
@@ -71,14 +71,35 @@ h1 {
 #fullArticle img {
   width: 70%;
   align-self: center;
+  border-right: 196px solid #1a1818;
+  border-left: 196px solid #1a1818;
+  border-top: 20px solid #1a1818;
+  border-bottom: 20px solid #1a1818;
+}
+#fullArticle button {
+  border: none;
+  width: 100px;
+  align-self: flex-start;
+  background-color: #1a1818;
+  color: #32c51f;
+  font-size: 18px;
+  font-weight: bold;
+}
+#fullArticle .artextrainfo {
+  margin-top: 12px;
+  width: 100%;
+  color: #1a1818;
+  font-weight: bold;
+  font-style: italic;
+  padding: 5px 0px 8px 8px;
 }
 
 .explore {
+  background-color: #1a1818;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #1a1818;
 }
 
 .article-preview {
@@ -101,7 +122,12 @@ h1 {
   grid-row: title/extra;
 }
 .article-preview button {
-  width: 80px;
+  width: 120px;
+  border: none;
+  color: #1a1818;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
   grid-column: comp-content;
   grid-row: paragraph;
   align-self: flex-end;
@@ -121,13 +147,18 @@ h1 {
   grid-row: theme;
 }
 .article-preview p {
-  margin: 10px 5px 10px 5px;
+  margin: 0px;
   padding-left: 10px;
   grid-row: paragraph;
   grid-column: comp-content;
 }
 .article-preview .artextrainfo {
   padding-left: 10px;
+  margin-top: 12px;
+  width: 100%;
+  color: #1a1818;
+  font-weight: bold;
+  font-style: italic;
   grid-column: comp-content;
   grid-row: extra;
 }

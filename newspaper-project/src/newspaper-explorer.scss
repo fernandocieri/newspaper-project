@@ -3,11 +3,11 @@
 @use 'newspaper-fullnewsarticle';
  
 .explore {
+    background-color: base.$dark-background;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: base.$dark-background;
 }
 
 @mixin left-padding() {
@@ -35,7 +35,12 @@
     }
 
     button {
-        width: 80px;
+        width: 120px;
+        border: none;
+        color: base.$dark-background;
+        font-size: 18px;
+        font-weight: bold;
+        font-style: italic;
         grid-column: comp-content;
         grid-row: paragraph;
         align-self: flex-end;
@@ -58,7 +63,7 @@
     }
 
     p {
-        margin: 10px 5px 10px 5px;
+        margin: 0px;
         @include left-padding;
         grid-row: paragraph;
         grid-column: comp-content;
@@ -66,6 +71,7 @@
 
     .artextrainfo {
         @include left-padding;
+        @include base.extrainfo;
         grid-column: comp-content;
         grid-row: extra;
     }

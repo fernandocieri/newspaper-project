@@ -1,12 +1,12 @@
 @use 'base';
 
 #fullArticle {
-    background-color: white;
     margin-left: 5%;
     margin-right: 5%;
     padding-top: 1%;
     padding-right: 2%;
     padding-left: 2%;
+    background-color: white;
     text-align: justify;
     display: flex;
     flex-direction: column;
@@ -14,7 +14,25 @@
     img {
         width: 70%;
         align-self: center;
+        border-right: 196px solid base.$dark-background;
+        border-left: 196px solid base.$dark-background;
+        border-top: 20px solid base.$dark-background;
+        border-bottom: 20px solid base.$dark-background;
     }
 
+    button {
+        border: none;
+        width: 100px;
+        align-self: flex-start;
+        background-color: base.$dark-background;
+        color: base.$green-highlight;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .artextrainfo {
+        @include base.extrainfo;
+        padding: 5px 0px 8px 8px;
+    }
 }
 
