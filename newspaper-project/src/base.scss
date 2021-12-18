@@ -1,0 +1,22 @@
+$green-highlight: #32c51f;
+$dark-background: #1a1818;
+
+@mixin extrainfo() {
+    margin-top: 12px;
+    width: 100%;
+    color: $dark-background;
+    font-weight: bold;
+    font-style: italic;
+}
+
+body {
+    font-size: 25px;
+    margin: 0px;
+    padding: 0px;
+    background-color: $dark-background;
+}
+
+img {
+    width: 40%;
+    height: 75%;
+}
