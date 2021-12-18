@@ -15,7 +15,7 @@ export default class NewsArticlePreview extends React.Component {
         return (
         <article onClick={this.sendID} className="article-preview">
             <div className="artTitle">{this.props.newsData.title}</div>        
-            <img src={this.props.newsData.urlToImage} alt="Image not found"/>
+            <img src={this.props.newsData.urlToImage} alt="not found"/>
             <p>{this.props.newsData.description}</p>
             <button>leer más --</button>
             <div className="artextrainfo">
