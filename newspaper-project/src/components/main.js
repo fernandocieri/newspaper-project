@@ -28,7 +28,7 @@ export default class Main extends React.Component {
         resp.data.articles[i].author === null ||
         resp.data.articles[i].author === ""
       ) {
-        resp.data.articles[i].author = "anonymous author";
+        resp.data.articles[i].author = "unknown";
       }
       if (resp.data.articles[i].content !== null) {
         apiNews.push({ ...resp.data.articles[i], identifier: i });
@@ -62,7 +62,7 @@ export default class Main extends React.Component {
         resp.data.articles[i].author === null ||
         resp.data.articles[i].author === ""
       ) {
-        resp.data.articles[i].author = "anonymous author";
+        resp.data.articles[i].author = "unknown";
       }
       if (resp.data.articles[i].content !== null) {
         apiNews.push({ ...resp.data.articles[i], identifier: i });
