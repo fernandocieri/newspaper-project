@@ -79,7 +79,7 @@ export default class Main extends React.Component {
             newsData={article}
             articleTheme={this.state.articleTheme}
             handlePageChanges={this.handlePageChanges}
-            key={article.identifier} /*key={mockedNews.indexOf(article)}*/
+            key={article.identifier}
           />
         ))}
       </section>
