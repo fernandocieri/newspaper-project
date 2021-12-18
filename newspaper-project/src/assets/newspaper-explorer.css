@@ -1,5 +1,6 @@
 body {
   font-size: 25px;
+  font-family: "Times New Roman", Times, serif;
   margin: 0px;
   padding: 0px;
   background-color: #1a1818;
@@ -12,19 +13,21 @@ img {
 
 Header {
   background-color: #1a1818;
-  height: 160px;
+  height: 190px;
   width: 100%;
+  margin-bottom: 10px;
   display: grid;
   justify-content: center;
   align-items: center;
   grid-template-columns: [whole] 100%;
-  grid-template-rows: [logo] 1fr [navbar] 1fr;
+  grid-template-rows: [logo] 1fr [navbar] 1fr [theme] 0.5fr;
   row-gap: 8px;
 }
 Header nav {
   display: flex;
   width: 90%;
   height: 90%;
+  border-bottom: 3px solid #32c51f;
   grid-column: whole;
   grid-row: navbar;
   justify-self: center;
@@ -33,7 +36,8 @@ Header nav {
 }
 Header nav button {
   width: 18%;
-  height: 70%;
+  height: 100%;
+  padding: 0.5%;
   background-color: #1a1818;
   border: none;
   margin-left: 8px;
@@ -43,8 +47,22 @@ Header nav button {
   font-weight: bold;
 }
 Header nav button:hover {
-  border: solid 3px;
-  border-color: #32c51f;
+  border: solid 3px #32c51f;
+}
+
+header p {
+  width: 245px;
+  margin: 0px 0px 0px 76px;
+  padding: 0px 3px 3px 3px;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 28px;
+  text-align: center;
+  border: solid 3px #32c51f;
+  color: #32c51f;
+  background-color: #1a1818;
+  grid-column: whole;
+  grid-row: theme;
 }
 
 h1 {
@@ -94,7 +112,7 @@ h1 {
   padding: 5px 0px 8px 8px;
 }
 
-.explore {
+.filtered-explore {
   background-color: #1a1818;
   display: flex;
   flex-direction: column;
