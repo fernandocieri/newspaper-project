@@ -1,0 +1,83 @@
+@use 'base';
+@use 'newspaper-header';
+@use 'newspaper-fullnewsarticle';
+ 
+.filtered-explore {
+    background-color: base.$dark-background;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin left-padding() {
+    padding-left: 10px;
+}
+
+.article-preview {
+    width: 70%;
+    height: 100%;
+    margin: 1.5px 0px 1.5px 0px;
+    padding: 10px;
+    border: solid 2px #a0a0a0;
+    background-color: #ffffff;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: [comp-content] 70% [img] 30%;
+    grid-template-rows: [title] 1.5fr [theme] 0.3fr [paragraph] 2fr [extra] 0.5fr;
+    column-gap: 8px;
+
+    img {
+        width: 95%;
+        grid-column: img;
+        grid-row: title / extra;
+    }
+
+    button {
+        width: 120px;
+        border: none;
+        color: base.$dark-background;
+        font-size: 18px;
+        font-weight: bold;
+        font-style: italic;
+        grid-column: comp-content;
+        grid-row: paragraph;
+        align-self: flex-end;
+        justify-self: flex-end
+    }
+
+    .artTitle {
+    @include left-padding;
+    padding-top: 10px;
+    font-size: 120%;
+    font-weight: bolder;
+    grid-column: comp-content;
+    grid-row: title;
+    }
+
+    .artTheme {
+        @include left-padding;
+        grid-column: comp-content;
+        grid-row: theme;
+    }
+
+    p {
+        margin: 0px;
+        @include left-padding;
+        grid-row: paragraph;
+        grid-column: comp-content;
+    }
+
+    .artextrainfo {
+        @include left-padding;
+        @include base.extrainfo;
+        grid-column: comp-content;
+        grid-row: extra;
+    }
+
+}
+
+.article-preview:hover {
+    border: solid 3.5px base.$green-highlight;
+}

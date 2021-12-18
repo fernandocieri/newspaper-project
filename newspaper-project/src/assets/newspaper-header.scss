@@ -1,0 +1,71 @@
+@use 'base';
+
+Header {
+    background-color: base.$dark-background;
+    height: 190px;
+    width: 100%;
+    margin-bottom: 10px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: [whole] 100%;
+    grid-template-rows: [logo] 1fr [navbar] 1fr [theme] 0.5fr;
+    row-gap: 8px;
+    
+    nav{
+        display: flex;
+        width: 90%;
+        height: 90%;
+        border-bottom: 3px solid base.$green-highlight;
+        grid-column: whole;
+        grid-row: navbar;
+        justify-self: center;
+        align-self: center;
+        justify-content: center;
+        
+        button {
+            width: 18%;
+            height: 100%;
+            padding: 0.5%;
+            background-color: base.$dark-background;
+            border: none;
+            margin-left: 8px;
+            justify-self: center;
+            color: base.$green-highlight;
+            font-size: 27px;
+            font-weight: bold;
+        }
+        button:hover {
+            border: solid 3px base.$green-highlight;
+        }
+
+        
+    }
+}
+header {
+    p {
+        width: 245px;
+        margin: 0px 0px 0px 76px;
+        padding: 0px 3px 3px 3px;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 28px;
+        text-align: center;
+        border: solid 3px base.$green-highlight;
+        color: base.$green-highlight;
+        background-color: base.$dark-background;
+        grid-column: whole;
+        grid-row: theme;
+    }
+    
+}
+
+h1 {
+    grid-column: whole;
+    grid-row: logo;
+    justify-self: center;
+    margin: 0px;
+    padding: 0px;
+    color: base.$green-highlight;
+    font-size: 60px;
+}
