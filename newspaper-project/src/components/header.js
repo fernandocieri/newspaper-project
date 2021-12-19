@@ -29,6 +29,7 @@ export default class Header extends React.Component {
             <Navbar
               handleFilterThemes={this.handleFilterThemes}
               themes={theme}
+              key={filteredThemes.indexOf(theme) +100}
             />
           ))}
         </nav>

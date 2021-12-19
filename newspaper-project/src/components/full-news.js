@@ -17,7 +17,7 @@ export default class FullNewsArticle extends React.Component {
       <article id="fullArticle">
         <button onClick={this.prevPage}>-- volver</button>
         <h2>{this.state.news.title}</h2>
-        <img src={this.state.news.urlToImage} />
+        <img src={this.state.news.urlToImage} alt="not found"/>
         <div className="artextrainfo">
           {this.state.news.author} - {this.state.news.publishedAt}
         </div>
