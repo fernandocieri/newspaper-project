@@ -79,8 +79,8 @@ h1 {
   margin-left: 5%;
   margin-right: 5%;
   padding-top: 1%;
-  padding-right: 2%;
-  padding-left: 2%;
+  padding-right: 15%;
+  padding-left: 15%;
   background-color: white;
   text-align: justify;
   display: flex;
@@ -89,8 +89,8 @@ h1 {
 #fullArticle img {
   width: 70%;
   align-self: center;
-  border-right: 196px solid #1a1818;
-  border-left: 196px solid #1a1818;
+  border-right: 10rem solid #1a1818;
+  border-left: 10rem solid #1a1818;
   border-top: 20px solid #1a1818;
   border-bottom: 20px solid #1a1818;
 }
@@ -121,8 +121,8 @@ h1 {
 }
 
 .article-preview {
-  width: 70%;
-  height: 100%;
+  width: 80%;
+  height: 20rem;  
   margin: 1.5px 0px 1.5px 0px;
   padding: 10px;
   border: solid 2px #a0a0a0;
@@ -136,6 +136,7 @@ h1 {
 }
 .article-preview img {
   width: 95%;
+  height: 15rem;
   grid-column: img;
   grid-row: title/extra;
 }

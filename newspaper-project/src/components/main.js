@@ -3,6 +3,7 @@ import NewsArticlePreview from "./news-preview.js";
 import FullNewsArticle from "./full-news.js";
 import Header from "./header"
 import axios from 'axios';
+//It includes or the components of the proyect and work with them to render the news and make calls to api.
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -16,11 +17,12 @@ export default class Main extends React.Component {
     this.handlePageChanges = this.handlePageChanges.bind(this);
     this.handleSetTheme = this.handleSetTheme.bind(this);
   }
-
+  //Get the call to the news from the api and sets them on the state, excluding them if the article's content or article's description are null
+  //Also if author is null or empty, will be set to unknow.
   async componentDidMount() {
     let category = this.state.category;
     const resp = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=e1c41041380c4911ad71f2375242b73d`
+      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=750d667ad37c46b9b500c7479ad881bc`
     );
     let apiNews = [];
     for (let i = 0; i < resp.data.articles.length; i++) {
@@ -30,7 +32,7 @@ export default class Main extends React.Component {
       ) {
         resp.data.articles[i].author = "unknown";
       }
-      if (resp.data.articles[i].content !== null) {
+      if ((resp.data.articles[i].content !== null) && (resp.data.articles[i].description !== "")) {
         apiNews.push({ ...resp.data.articles[i], identifier: i });
       }
     }
@@ -44,6 +46,10 @@ export default class Main extends React.Component {
     }));
   }
 
+  //this funtion will recall to the api to get again the news, but it will pass from params the actual category "theme" and it will be set on the call to get
+  //news by topics.
+  //If the author is null or empty, will be set to unknown.
+  //If the article's content or article's description are not empty, then will be pushed to the apiNews variable wich later will be set on the state news
   async handleSetTheme(theme) {
     let category = "general";
     this.setState((state) => ({ articleTheme: theme }));
@@ -54,7 +60,7 @@ export default class Main extends React.Component {
       category = theme;
     }
     const resp = await axios.get(
-      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=e1c41041380c4911ad71f2375242b73d`
+      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=750d667ad37c46b9b500c7479ad881bc`
     );
     let apiNews = [];
     for (let i = 0; i < resp.data.articles.length; i++) {
@@ -64,14 +70,14 @@ export default class Main extends React.Component {
       ) {
         resp.data.articles[i].author = "unknown";
       }
-      if (resp.data.articles[i].content !== null) {
+      if ((resp.data.articles[i].content !== null) && (resp.data.articles[i].description !== "")) {
         apiNews.push({ ...resp.data.articles[i], identifier: i });
       }
     }
     this.setState(() => ({ news: apiNews }));
   }
 
-  render() {
+  render() {    
     const filteredExplorePage = (
       <section className="filtered-explore">
         {this.state.news.map((article) => (
@@ -79,7 +85,7 @@ export default class Main extends React.Component {
             newsData={article}
             articleTheme={this.state.articleTheme}
             handlePageChanges={this.handlePageChanges}
-            key={article.identifier} /*key={mockedNews.indexOf(article)}*/
+            key={article.identifier}
           />
         ))}
       </section>

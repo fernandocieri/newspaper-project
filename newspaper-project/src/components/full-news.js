@@ -1,4 +1,6 @@
 import React from "react";
+//This class will render the article once it's has been opened.
+//It contains a button called "volver" to go back to display all the articles preview.
 export default class FullNewsArticle extends React.Component {
   constructor(props) {
     super(props);

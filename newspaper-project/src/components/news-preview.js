@@ -1,14 +1,15 @@
 import React from "react";
+//This component will render all the news previews, by passing props to the render function.
 export default class NewsArticlePreview extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { ...this.props.newsData, articleTheme: this.props.articleTheme };
+        this.state = { news: this.props.newsData, articleTheme: this.props.articleTheme };
         this.sendID = this.sendID.bind(this);
     }
     
       //onClick sendID will update the state of Main, chaging the value of articleIsOpen to its opossite, and giving idNumber to showedArtID as a value;
     sendID() {
-        this.props.handlePageChanges(this.state.identifier);
+        this.props.handlePageChanges(this.state.news.identifier);
     }
     
     render() {    
